@@ -46,3 +46,24 @@ __inline static std::string str_xor(std::string s)
 	for (auto c : x){ c ^= (unsigned char)(0xFF); }
 	return x;
 }
+__inline static std::string hex_to_str(std::string h)
+{
+	std::string s((""));
+	char ch[3] = { 0 };
+	for (auto c : h) { sprintf(ch, ("%02X"), (unsigned char)c);s.append(ch); }
+	return s;
+}
+__inline static std::string str_to_hex(std::string s)
+{
+	std::string h((""));
+	size_t i = 0;
+	size_t l = s.length();
+	if (!(l % sizeof(short)))
+	{
+		for (i = 0; i < l; i += sizeof(short))
+		{
+			h.push_back((unsigned char)strtoul(s.substr(i, sizeof(short)).c_str(), NULL, 0x10));
+		}
+	}
+	return h;
+}
