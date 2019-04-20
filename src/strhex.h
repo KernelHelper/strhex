@@ -25,7 +25,7 @@ __inline static short c2s(char c)
 __inline static std::string hex2str(std::string s)
 {
 	std::string h(s.size() * sizeof(short), '\0');
-	for (int i = 0; i < s.size(); i++)
+	for (size_t i = 0; i < s.size(); i++)
 	{
 		((short*)h.c_str())[i] = c2s(s.at(i));
 	}
@@ -34,7 +34,7 @@ __inline static std::string hex2str(std::string s)
 __inline static std::string str2hex(std::string h)
 {
 	std::string s(h.length() / sizeof(short), '\0');
-	for (int i = 0; i < s.length(); i++)
+	for (size_t i = 0; i < s.length(); i++)
 	{
 		s.at(i) = s2c(((short*)h.c_str())[i]);
 	}
